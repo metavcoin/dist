@@ -1,0 +1,9 @@
+export const metavcoinP_MIN_DECIMALS = 2
+export const metavcoinP_MAX_DECIMALS = 8
+export const metavcoin_ASSET_HASH = '00'
+export const metavcoin_ASSET_NAME = 'ZP'
+export const metavcoin_TO_KALAPA_RATIO = 100000000
+export const BUG_BOUNTY_URL = 'https://docs.metavcoin.com/bug-bounty'
+export const MAINNET = 'mainnet'
+export const TESTNET = 'testnet'
+export const LOCALNET = 'localnet'

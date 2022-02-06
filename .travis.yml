@@ -1,0 +1,36 @@
+sudo: required
+language: node_js
+os:
+- osx
+- linux
+dist: trusty
+osx_image: xcode9.0
+node_js:
+- 8
+cache:
+  yarn: true
+  directories:
+  - node_modules
+  - app/node_modules
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+    - icnsutils
+    - graphicsmagick
+    - xz-utils
+    - xorriso
+before_install:
+  - echo "@metavcoin:registry=https://www.myget.org/F/metavcoin/npm/" > .npmrc
+  - echo "//www.myget.org/F/metavcoin/npm/:_authToken=$MYGET_TOKEN" >> .npmrc
+install:
+- npm ci --verbose
+script:
+- npm run build
+- npm run lint
+#- npm run test-no-watch
+after_success:
+  - npm run release
+  - if [ $TRAVIS_OS_NAME = linux ] && [ ! -z "$TRAVIS_TAG" ]; then npm publish; fi
